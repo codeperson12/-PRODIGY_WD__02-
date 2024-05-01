@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch (Task-2)</title>
+   
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+    rel="stylesheet"
+/>
+    <link rel="shortcut icon" href="icons8-stopwatch-48.png" type="image/x-icon">
+   
+<link rel="stylesheet" href="stop.css"></head>
+<body>
+<span><i class="ri-timer-line"></i></span>
+    <h5 >Stopwatch <br></h5>
+   
+       <h5 class="use">Using Javascript</h5> 
+
+    <div class="stopwatch">
+        <h1 id="displaytimes">00:00:00 </h1>
+   
+
+    <div class="buttons">
+        
+            <img src="stop.png" alt="stopthewatch" onclick="watchstop()">
+            <img src="start.png" alt="start" onclick="watchstart()">
+            <img src="reset.png" alt="stopthewatch" onclick="watchreset()">
+            
+        
+    </div>
+</div>
+
+<script>
+
+    let [seconds, minutes, hours] = [0,0,0];
+    let displaytimes = document.getElementById("displaytimes");
+    let timer=null;
+
+    function stopwatch(){
+        seconds++;
+        if(seconds == 60){
+            seconds = 0;
+            minutes ++;
+
+            if(minutes == 60){
+                minutes = 0;
+hours++;      
+            }
+           
+  }
+
+let h= hours < 10 ? "0" + hours :hours;
+let m= minutes < 10 ? "0" + minutes : minutes;
+let s=  seconds < 10 ? "0" + seconds : seconds;
+
+displaytimes.innerHTML= h +":"+ m + ":" + s;
+
+
+    }
+    //  watch
+    function watchstart() {
+        if(timer!== null){
+            clearInterval(timer);
+        }
+         timer=setInterval( stopwatch,1000);
+    }
+
+    // stop
+
+    function watchstop(){
+
+        clearInterval(timer);
+    }
+
+    function watchreset(){
+
+clearInterval(timer);[ seconds, minutes, hours] =[0,0,0];
+displaytimes.innerHTML ="00:00:00";
+}
+</script>
+</body>
+</html>
